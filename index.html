@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vantigo E-Com Solution - Apply Here</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Vantigo E-Com Solution</h1>
+        <h2>Apply Here</h2>
+
+        <form id="jobApplicationForm" method="POST">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="altphone">Alternative Contact</label>
+            <input type="tel" id="altphone" name="altphone">
+
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" required>
+
+            <label for="district">District</label>
+            <input type="text" id="district" name="district" required>
+
+            <label for="locality">Locality</label>
+            <input type="text" id="locality" name="locality" required>
+
+            <label for="postcode">Post Code</label>
+            <input type="text" id="postcode" name="postcode" required>
+
+            <label for="position">Job Position</label>
+            <select id="position" name="position" required>
+                <option value="Business Development Manager">Business Development Manager</option>
+                <option value="Business Development Executive">Business Development Executive</option>
+                <option value="Team Leader">Team Leader</option>
+                <option value="Front Office Manager">Front Office Manager</option>
+            </select>
+
+            <label for="qualification">Qualification</label>
+            <input type="text" id="qualification" name="qualification" required>
+
+            <label for="coverletter">Cover Letter</label>
+            <textarea id="coverletter" name="coverletter" rows="5" placeholder="Write your cover letter here..." required></textarea>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('jobApplicationForm').onsubmit = function(event) {
+            event.preventDefault();
+
+            var formData = new FormData();
+            formData.append('fullname', document.getElementById('fullname').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('altphone', document.getElementById('altphone').value);
+            formData.append('state', document.getElementById('state').value);
+            formData.append('district', document.getElementById('district').value);
+            formData.append('locality', document.getElementById('locality').value);
+            formData.append('postcode', document.getElementById('postcode').value);
+            formData.append('position', document.getElementById('position').value);
+            formData.append('qualification', document.getElementById('qualification').value);
+            formData.append('coverletter', document.getElementById('coverletter').value);
+
+            // Replace with your Google Apps Script Web App URL
+            fetch('https://script.google.com/macros/s/AKfycbyRxMhwrbBxvRahJpDgxN2gzNHzjB1T3wOiB4yvwxxEcVp7s3bmoeZLbcNr7qnw8bqZiQ/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Application submitted successfully');
+                } else {
+                    alert('There was an error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your application.');
+            });
+        };
+    </script>
+
+</body>
+</html>
